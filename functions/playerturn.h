@@ -14,6 +14,7 @@
 // Custom function imports
 #include "../functions/getplayercardchoice.h"
 #include "../functions/cardmatch.h"
+#include "../functions/displaygameboard.h"
 
 bool player_turn(GameBoard &board, Player &curr_player)
 {
@@ -40,7 +41,7 @@ bool player_turn(GameBoard &board, Player &curr_player)
             std::cout << "Row # -> ";
             std::cin >> row1;
             loop_count++;
-        } while (row1 >= 1 && row1 <= 4);
+        } while (row1 < 1 || 4 < row1);
         loop_count = 0;
 
         do
@@ -52,16 +53,16 @@ bool player_turn(GameBoard &board, Player &curr_player)
             std::cout << "Col # -> ";
             std::cin >> col1;
             loop_count++;
-        } while (col1 >= 1 && col1 <= 13);
+        } while (col1 < 1 || 13 < col1);
         loop_count = 0;
 
-        card1 = board.game_board[row1][col1];
+        card1 = board.game_board[row1 - 1][col1 - 1];
         loop_count++;
 
     } while (card1.is_removed);
     loop_count = 0;
 
-    board.game_board[row1][col1].is_flipped = true;
+    board.game_board[row1 - 1][col1 - 1].is_flipped = true;
 
     std::cout << "Pick the second card." << std::endl;
     do
@@ -81,7 +82,7 @@ bool player_turn(GameBoard &board, Player &curr_player)
             std::cout << "Row # -> ";
             std::cin >> row2;
             loop_count++;
-        } while (row2 >= 1 && row2 <= 4);
+        } while (row2 < 1 || 4 < row2);
         loop_count = 0;
 
         do
@@ -93,33 +94,32 @@ bool player_turn(GameBoard &board, Player &curr_player)
             std::cout << "Col # -> ";
             std::cin >> col2;
             loop_count++;
-        } while (col2 >= 1 && col2 <= 13);
+        } while (col2 < 1 || 13 < col2);
         loop_count = 0;
 
-        card2 = board.game_board[row2][col2];
+        card2 = board.game_board[row2 - 1][col2 - 1];
         loop_count++;
 
     } while (card2.is_removed);
 
-    board.game_board[row2][col2].is_flipped = true;
+    board.game_board[row2 - 1][col2 - 1].is_flipped = true;
+
+    display_game_board(board);
 
     // check if cards are a match
     if (is_match(card1, card2)) // decide if players turn is over
     {
-        board.game_board[row1][col1].is_removed = true;
-        board.game_board[row2][col2].is_removed = true;
+        board.game_board[row1 - 1][col1 - 1].is_removed = true;
+        board.game_board[row2 - 1][col2 - 1].is_removed = true;
         board.card_count -= 2;
         curr_player.match_count++;
         return false;
     } else
     {
-        board.game_board[row1][col1].is_flipped = false;
-        board.game_board[row2][col2].is_flipped = false;
+        board.game_board[row1 - 1][col1 - 1].is_flipped = false;
+        board.game_board[row2 - 1][col2 - 1].is_flipped = false;
         return true;
     }
-
-
-
 }
 
 #endif //CONCENTRATION_CARD_GAME_PLAYERTURN_H
