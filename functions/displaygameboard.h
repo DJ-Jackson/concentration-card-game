@@ -22,7 +22,7 @@ void print_dash_row()
     std::cout << std::endl;
 }
 
-void display_game_board(GameBoard gameboard, Player playerlist[])
+void display_game_board(GameBoard gameboard, Player playerlist[], int playerlist_len)
 {
     std::cout << std::setw(4) << "" << "|";
     for (int i = 1; i <= 13; i++)
@@ -56,9 +56,9 @@ void display_game_board(GameBoard gameboard, Player playerlist[])
 
     std::cout << std::endl;
 
-    for (int i = 0; i < *(&playerlist + 1) - playerlist; i++)
+    for (int i = 0; i < playerlist_len; i++)
     {
-        Player curr_player = playerlist[i];
+        Player curr_player = *(playerlist + i);
         std::cout << curr_player.name << ": " << curr_player.match_count << " matches";
         std::cout << std::endl;
     }

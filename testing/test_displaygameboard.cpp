@@ -52,7 +52,7 @@ int main()
         }
     }
 
-    display_game_board(test_board, playerlist);
+    display_game_board(test_board, playerlist, num_players);
 
 }
 
