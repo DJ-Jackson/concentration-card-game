@@ -4,11 +4,15 @@
 #define TAB "\t"
 
 #include <iostream>
+#include <vector>
+
 #include "../functions/displaygameboard.h"
 
 #include "../structs/gameboard.h"
 #include "../structs/player.h"
 #include "../structs/card.h"
+
+#include "../constants/suit.h"
 using namespace std;
 
 
@@ -20,7 +24,8 @@ int main()
 
     cout << TAB << "Number of players -> " << num_players << endl;
 
-    Player playerlist[2], player1, player2;
+    vector<Player> playerlist;
+    Player player1, player2;
 
     player1.name = "John";
     player1.match_count = 2;
@@ -28,12 +33,11 @@ int main()
     player2.name = "Jane";
     player2.match_count = 3;
 
-    playerlist[0] = player1;
-    playerlist[1] = player2;
+    playerlist.push_back(player1);
+    playerlist.push_back(player2);
 
     GameBoard test_board;
 
-    string suits = "shdc";
     int flipped = 2;
 
     for (int i = 0; i < 4; i++)
@@ -42,7 +46,7 @@ int main()
         {
             Card curr;
             curr.rank = j + 1;
-            curr.suit = suits[i];
+            curr.suit = SUIT[i];
             if (j == i && flipped)
             {
                 curr.is_flipped = true;
@@ -52,7 +56,7 @@ int main()
         }
     }
 
-    display_game_board(test_board, playerlist, num_players);
+    display_game_board(test_board, playerlist);
 
 }
 

@@ -12,6 +12,7 @@
 
 #include <iomanip>
 #include <iostream>
+#include <vector>
 
 void print_dash_row()
 {
@@ -22,7 +23,7 @@ void print_dash_row()
     std::cout << std::endl;
 }
 
-void display_game_board(GameBoard gameboard, Player playerlist[], int playerlist_len)
+void print_game_board(GameBoard gameboard)
 {
     std::cout << std::setw(4) << "" << "|";
     for (int i = 1; i <= 13; i++)
@@ -39,13 +40,16 @@ void display_game_board(GameBoard gameboard, Player playerlist[], int playerlist
         for (int j = 0; j < 13; j++)
         {
             Card curr_card = gameboard.game_board[i][j];
-            std::string card_repr;
-            if (curr_card.is_flipped)
+            std::string card_repr{};
+            if (!curr_card.is_removed)
             {
-                card_repr = std::to_string(gameboard.game_board[i][j].rank) + gameboard.game_board[i][j].suit;
-            } else
-            {
-                card_repr = "X ";
+                if (curr_card.is_flipped)
+                {
+                    card_repr = std::to_string(gameboard.game_board[i][j].rank) + gameboard.game_board[i][j].suit;
+                } else
+                {
+                    card_repr = "X ";
+                }
             }
             std::cout << std::setw(4) << card_repr << "|";
         }
@@ -55,13 +59,24 @@ void display_game_board(GameBoard gameboard, Player playerlist[], int playerlist
     }
 
     std::cout << std::endl;
+}
 
-    for (int i = 0; i < playerlist_len; i++)
+void display_game_board(GameBoard gameboard, std::vector<Player> playerlist)
+{
+    print_game_board(gameboard);
+
+    for (auto curr_player : playerlist)
     {
-        Player curr_player = *(playerlist + i);
         std::cout << curr_player.name << ": " << curr_player.match_count << " matches";
         std::cout << std::endl;
     }
 }
+
+void display_game_board(GameBoard gameboard)
+{
+    print_game_board(gameboard);
+}
+
+
 
 #endif //CONCENTRATION_CARD_GAME_DISPLAYGAMEBOARD_H
