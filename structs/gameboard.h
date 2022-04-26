@@ -7,7 +7,7 @@
 
 #include "../structs/card.h"
 
-struct Gameboard
+struct GameBoard
 {
     Card game_board[4][13];
     int card_count = 0; // Defaults the card_count to 0 for each initialization
