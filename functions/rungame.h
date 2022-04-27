@@ -18,7 +18,7 @@
 // Built-in c++ imports
 #include <vector>
 
-void play_game()
+void run_game()
 {
     GameBoard board = create_game_board();
     std::vector<Player> player_list = create_player_list();
