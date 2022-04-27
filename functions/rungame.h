@@ -20,7 +20,13 @@
 
 void run_game()
 {
+    std::cout << "Starting game." << std::endl;
+
+    std::cout << "Creating game board..." << std::endl;
     GameBoard board = create_game_board();
+    std::cout << "Finished." << std::endl;
+
+    display_game_board(board);
     std::vector<Player> player_list = create_player_list();
     play_game(board, player_list);
     winner(player_list);

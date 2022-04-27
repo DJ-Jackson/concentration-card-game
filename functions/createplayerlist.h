@@ -23,7 +23,7 @@ std::vector<Player> create_player_list()
     for (int i = 0; i < num_players; ++i)
     {
         std::cout << "What is player " << i + 1 << "'s name? -> ";
-        std::getline(std::cin, player_name);
+        std::cin >> player_name;
 
         Player curr;
         curr.name = player_name;

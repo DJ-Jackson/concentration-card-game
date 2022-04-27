@@ -9,9 +9,9 @@
 
 bool card_is_in_board(GameBoard &board, Card search, int upper_row_limit, int lower_row_limit)
 {
-    for (int i = 0; i < upper_row_limit; i++)
+    for (int i = 0; i <= upper_row_limit; i++)
     {
-        for (int j = 0; j < lower_row_limit; j++)
+        for (int j = 0; j <= lower_row_limit; j++)
         {
             Card curr = board.game_board[i][j];
             if ((search.rank == curr.rank) && (search.suit == curr.suit))
