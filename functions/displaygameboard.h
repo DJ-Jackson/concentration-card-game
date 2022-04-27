@@ -45,7 +45,25 @@ void print_game_board(GameBoard gameboard)
             {
                 if (curr_card.is_flipped)
                 {
-                    card_repr = std::to_string(gameboard.game_board[i][j].rank) + gameboard.game_board[i][j].suit;
+                    std::string card_rank;
+                    switch (curr_card.rank)
+                    {
+                        case 1:
+                            card_rank = "A";
+                            break;
+                        case 11:
+                            card_rank = "J";
+                            break;
+                        case 12:
+                            card_rank = "Q";
+                            break;
+                        case 13:
+                            card_rank = "K";
+                            break;
+                        default:
+                            card_rank = std::to_string(curr_card.rank);
+                    }
+                    card_repr = card_rank + curr_card.suit;
                 } else
                 {
                     card_repr = "X ";
