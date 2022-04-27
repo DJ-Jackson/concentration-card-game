@@ -7,7 +7,7 @@
 
 #include "../structs/gameboard.h"
 #include "../structs/card.h"
-#include "../functions/card_generator.h"
+#include "../functions/cardgenerator.h"
 #include "../functions/cardinboard.h"
 
 GameBoard create_game_board()
