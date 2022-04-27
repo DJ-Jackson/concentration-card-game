@@ -12,7 +12,6 @@
 #include "../structs/gameboard.h"
 
 // Custom function imports
-#include "../functions/getplayercardchoice.h"
 #include "../functions/cardmatch.h"
 #include "../functions/displaygameboard.h"
 
