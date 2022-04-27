@@ -29,6 +29,8 @@ std::vector<Player> create_player_list()
         curr.name = player_name;
         player_list.push_back(curr);
     }
+
+    return player_list;
 }
 
 #endif //CONCENTRATION_CARD_GAME_CREATEPLAYERLIST_H
